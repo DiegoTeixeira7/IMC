@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">IMC</string>
+    <string name="report">Relatório Nutricional</string>
+    <string name="name">Nome:</string>
+    <string name="age">Idade:</string>
+    <string name="weight1">Peso (kg):</string>
+    <string name="height1">Altura (m):</string>
+    <string name="weight2">Peso:</string>
+    <string name="height2">Altura:</string>
+    <string name="imc">IMC:</string>
+    <string name="classification">Classificação:</string>
+</resources>
