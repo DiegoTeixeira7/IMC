@@ -1,9 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ReportNutritional">
+    android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/reportTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_centerHorizontal="true"
+        android:textStyle="italic"
+        android:textSize="30sp"
+        android:text="@string/report" />
+
+
+    <LinearLayout
+        android:id="@+id/textsName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/reportTxt"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginLeft="45dp" >
+
+        <TextView
+            android:id="@+id/nameLable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="35dp"
+            android:textStyle="bold"
+            android:text="@string/name" />
+
+        <TextView
+            android:id="@+id/nameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="45dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/textsAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/textsName"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginLeft="45dp" >
+
+        <TextView
+            android:id="@+id/ageLable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="38dp"
+            android:textStyle="bold"
+            android:text="@string/age" />
+
+        <TextView
+            android:id="@+id/ageText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="45dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/textsWeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/textsAge"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginLeft="45dp" >
+
+        <TextView
+            android:id="@+id/weightLable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="42dp"
+            android:textStyle="bold"
+            android:text="@string/weight2" />
+
+        <TextView
+            android:id="@+id/weightText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="45dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/textsHeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/textsWeight"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginLeft="45dp" >
+
+        <TextView
+            android:id="@+id/heightLable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="35dp"
+            android:textStyle="bold"
+            android:text="@string/height2" />
+
+        <TextView
+            android:id="@+id/heightText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="45dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/textsIMC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/textsHeight"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginLeft="45dp" >
+
+        <TextView
+            android:id="@+id/IMCLable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="49dp"
+            android:textStyle="bold"
+            android:text="@string/imc" />
+
+        <TextView
+            android:id="@+id/IMCText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="45dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/textsReport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/textsIMC"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginLeft="45dp" >
+
+        <TextView
+            android:id="@+id/reportLable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="35dp"
+            android:textStyle="bold"
+            android:text="@string/classification" />
+
+        <TextView
+            android:id="@+id/reportText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="45dp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn-newReport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textsReport"
+        android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/newCalc"
+        android:textStyle="normal"
+        android:textAllCaps="false"
+        android:onClick="voltar"/>
+
+</RelativeLayout>
