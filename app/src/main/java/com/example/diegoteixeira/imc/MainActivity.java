@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -21,23 +22,40 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Log.i("Ciclo De Vida", getClassName() + " onCreate() TELA 1 chamando.");
+
         setContentView(R.layout.activity_main);
     }
 
-    private String classification(double IMC) {
-        if(IMC < 18.5) {
-            return "Abaixo do Peso";
-        } else if(IMC >= 18.5 && IMC < 25) {
-            return "Saudável";
-        } else if(IMC >= 25 && IMC < 30) {
-            return "Sobrepeso";
-        } else if(IMC >= 30 && IMC < 35) {
-            return "Obesidade Grau I";
-        } else if(IMC >= 35 && IMC < 40) {
-            return "Obesidade Grau II (severa)";
-        } else {
-            return "Obesidade Grau III (mórbida)";
-        }
+    protected void onStart() {
+        super.onStart();
+        Log.i("Ciclo De Vida", getClassName() + " onStart() TELA 1 chamando.");
+    }
+
+    protected void onRestart() {
+        super.onRestart();
+        Log.i("Ciclo De Vida", getClassName() + " onRestart() TELA 1 chamando.");
+    }
+
+    protected void onResume() {
+        super.onResume();
+        Log.i("Ciclo De Vida", getClassName() + " onResume() TELA 1 chamando.");
+    }
+
+    protected void onPause() {
+        super.onPause();
+        Log.i("Ciclo De Vida", getClassName() + " onPause() TELA 1 chamando.");
+    }
+
+    protected void onStop() {
+        super.onStop();
+        Log.i("Ciclo De Vida", getClassName() + " onStop() TELA 1 chamando.");
+    }
+
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i("Ciclo De Vida", getClassName() + " onDestroy() TELA 1 chamando.");
     }
 
     @SuppressLint("WrongConstant")
@@ -62,18 +80,12 @@ public class MainActivity extends AppCompatActivity {
                     if(height < 0.3 || height > 3) {
                         Toast.makeText(this,"Altura deve ser de 0.3m a 3 metros", 2000).show();
                     } else {
-                        double IMC = weigth/pow(height,2);
-                        IMC = parseDouble(findVirgula(new DecimalFormat("#,##0.0").format(IMC)));
-                        String classificacao = classification(IMC);
-
                         Intent it = new Intent(getBaseContext(), ReportNutritional.class);
 
                         it.putExtra("nome", nome);
                         it.putExtra("idade", age);
                         it.putExtra("peso", weigth);
                         it.putExtra("altura", height);
-                        it.putExtra("IMC", IMC);
-                        it.putExtra("classificacao", classificacao);
 
                         startActivity(it);
                     }
@@ -82,14 +94,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private String findVirgula(String valor) {
-        int index = valor.indexOf(",");
-        String resp = "";
-        if(index != -1) {
-            resp = valor.substring(0,index)+"."+valor.substring(index+1);
-            return resp;
-        }
-
-        return valor;
+    private String getClassName() {
+        String s = getClass().getName();
+        return s;
     }
 }
