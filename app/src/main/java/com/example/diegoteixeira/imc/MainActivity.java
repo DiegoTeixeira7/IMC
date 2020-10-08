@@ -2,10 +2,15 @@ package com.example.diegoteixeira.imc;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import java.text.DecimalFormat;
 
 import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
@@ -35,40 +40,56 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("WrongConstant")
     public void gerarRelatorio(View view) {
         String nome = ((EditText)findViewById(R.id.name)).getText().toString();
-        int idade = parseInt(((EditText)findViewById(R.id.age)).getText().toString());
-        double peso = parseDouble(((EditText)findViewById(R.id.weight)).getText().toString());
-        double altura = parseDouble(((EditText)findViewById(R.id.height)).getText().toString());
+        String idade = ((EditText)findViewById(R.id.age)).getText().toString();
+        String peso = ((EditText)findViewById(R.id.weight)).getText().toString();
+        String altura = ((EditText)findViewById(R.id.height)).getText().toString();
 
-        if(nome.length() == 0) {
-            // exibir toast
+        if(nome.length() == 0 || idade.length() == 0 || peso.length() == 0 || altura.length() == 0) {
+            Toast.makeText(this,"Preencha todos os campos", 2000).show();
         } else {
-            if(idade < 0 || idade > 140) {
-                //exibir toast
+            int age = parseInt(idade);
+            if(age < 0 || age > 140) {
+                Toast.makeText(this,"Idade deve ser de 0 a 140 anos", 2000).show();
+            } else {
+                double weigth = parseDouble(peso);
+                if(weigth < 0.2 || weigth > 400) {
+                    Toast.makeText(this,"Peso deve ser de 0.2kg a 400kg", 2000).show();
+                } else {
+                    double height = parseDouble(altura);
+                    if(height < 0.3 || height > 3) {
+                        Toast.makeText(this,"Altura deve ser de 0.3m a 3 metros", 2000).show();
+                    } else {
+                        double IMC = weigth/pow(height,2);
+                        IMC = parseDouble(findVirgula(new DecimalFormat("#,##0.0").format(IMC)));
+                        String classificacao = classification(IMC);
+
+                        Intent it = new Intent(getBaseContext(), ReportNutritional.class);
+
+                        it.putExtra("nome", nome);
+                        it.putExtra("idade", age);
+                        it.putExtra("peso", weigth);
+                        it.putExtra("altura", height);
+                        it.putExtra("IMC", IMC);
+                        it.putExtra("classificacao", classificacao);
+
+                        startActivity(it);
+                    }
+                }
             }
-
-            if(peso < 1 || peso > 400) {
-                //exibir toast
-            }
-
-            if(altura < 1 || altura > 3) {
-                //exibir toast
-            }
-
-            double IMC = peso/pow(altura,2);
-            String classificacao = classification(IMC);
-
-            Intent it = new Intent(getBaseContext(), ReportNutritional.class);
-
-            it.putExtra("nome", nome);
-            it.putExtra("idade", idade);
-            it.putExtra("peso", peso);
-            it.putExtra("altura", altura);
-            it.putExtra("IMC", IMC);
-            it.putExtra("classificacao", classificacao);
-
-            startActivity(it);
         }
+    }
+
+    private String findVirgula(String valor) {
+        int index = valor.indexOf(",");
+        String resp = "";
+        if(index != -1) {
+            resp = valor.substring(0,index)+"."+valor.substring(index+1);
+            return resp;
+        }
+
+        return valor;
     }
 }
