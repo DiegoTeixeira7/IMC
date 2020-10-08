@@ -93,6 +93,8 @@ public class ReportNutritional extends AppCompatActivity {
         Intent it = new Intent(getBaseContext(), MainActivity.class);
         it.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(it);
+
+        //finish();
     }
 
     private String classification(double IMC) {
